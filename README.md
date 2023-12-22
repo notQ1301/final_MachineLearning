@@ -174,7 +174,7 @@ Chúng tôi sẽ đề xuất hướng dẫn cách tích hợp các kỹ thuật
 
 Tóm lại, những đề xuất cải tiến và ứng dụng thực tế này sẽ giúp mô hình không chỉ là một giải pháp nghiên cứu mà còn là một công cụ hữu ích và linh hoạt cho nhiều ứng dụng thực tế.
 
-***TÀI LIỆU THAM KHẢO***
+## ***TÀI LIỆU THAM KHẢO***
 _https://www.analyticsvidhya.com/blog/2021/10/a-comprehensive-guide-on-deep-learning-optimizers/_
 _https://www.youtube.com/watch?v=JhQqquVeCE0_
 _https://viblo.asia/p/optimizer-hieu-sau-ve-cac-thuat-toan-toi-uu-gdsgdadam-Qbq5QQ9E5D8_
