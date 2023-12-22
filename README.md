@@ -128,49 +128,49 @@ Chung quanh mục tiêu chính này, nghiên cứu sẽ đi sâu vào các khía
 ## **4.	Phương pháp nghiên cứu**
 ### **4.1	Thiết Kế Nghiên Cứu**
 #### **4.1.1	 Quy Trình Huấn Luyện Ban Đầu**
-Để đảm bảo mô hình ban đầu có khả năng học tốt và đa dạng, tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng, chẳng hạn như CIFAR-100 hoặc ImageNet. Quá trình huấn luyện sẽ tập trung vào việc xây dựng một cơ sở kiến thức mạnh mẽ và linh hoạt.
+- Để đảm bảo mô hình ban đầu có khả năng học tốt và đa dạng, tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng, chẳng hạn như CIFAR-100 hoặc ImageNet. Quá trình huấn luyện sẽ tập trung vào việc xây dựng một cơ sở kiến thức mạnh mẽ và linh hoạt.
 #### **4.1.2	 Quá Trình Học Liên Tục**
-Sau giai đoạn huấn luyện ban đầu, chúng tôi sẽ triển khai quá trình học liên tục bằng cách sử dụng các phương pháp như Elastic Weight Consolidation (EWC) hoặc Gradient Episodic Memory (GEM). Mục tiêu là giảm thiểu hiện tượng quên và duy trì hiệu suất trên dữ liệu đã biết.
+- Sau giai đoạn huấn luyện ban đầu, chúng tôi sẽ triển khai quá trình học liên tục bằng cách sử dụng các phương pháp như Elastic Weight Consolidation (EWC) hoặc Gradient Episodic Memory (GEM). Mục tiêu là giảm thiểu hiện tượng quên và duy trì hiệu suất trên dữ liệu đã biết.
 #### **4.1.3	 Sản Xuất Kiểm Thử:**
-Quy trình này sẽ bao gồm việc tạo ra một bộ các tập kiểm thử đa dạng và thách thức. Chúng tôi sẽ đảm bảo rằng tập kiểm thử không chỉ phản ánh đa dạng của dữ liệu mà mô hình có thể gặp trong thực tế mà còn kiểm thử mô hình dưới nhiều điều kiện khác nhau.
+- Quy trình này sẽ bao gồm việc tạo ra một bộ các tập kiểm thử đa dạng và thách thức. Chúng tôi sẽ đảm bảo rằng tập kiểm thử không chỉ phản ánh đa dạng của dữ liệu mà mô hình có thể gặp trong thực tế mà còn kiểm thử mô hình dưới nhiều điều kiện khác nhau.
 ### **4.2	Dữ Liệu và Tài Nguyên**
 #### **4.2.1	 Nguồn Dữ Liệu**
-Chúng tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng để huấn luyện mô hình ban đầu. Đối với quá trình học liên tục, chúng tôi sẽ thu thập dữ liệu mới từ nguồn tin cậy và đa dạng, đảm bảo bao gồm nhiều loại thông tin mà mô hình có thể gặp trong quá trình triển khai thực tế.
+- Chúng tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng để huấn luyện mô hình ban đầu. Đối với quá trình học liên tục, chúng tôi sẽ thu thập dữ liệu mới từ nguồn tin cậy và đa dạng, đảm bảo bao gồm nhiều loại thông tin mà mô hình có thể gặp trong quá trình triển khai thực tế.
 #### **4.2.2	 Tài Nguyên Cần Thiết Khác:**
-Để hỗ trợ quá trình huấn luyện và kiểm thử, chúng tôi sẽ sử dụng các máy chủ tính toán đám mây. Ngoài ra, chúng tôi cũng sẽ sử dụng các thư viện và framework học máy phổ biến như TensorFlow hoặc PyTorch để triển khai mô hình và thực hiện các thử nghiệm.
+- Để hỗ trợ quá trình huấn luyện và kiểm thử, chúng tôi sẽ sử dụng các máy chủ tính toán đám mây. Ngoài ra, chúng tôi cũng sẽ sử dụng các thư viện và framework học máy phổ biến như TensorFlow hoặc PyTorch để triển khai mô hình và thực hiện các thử nghiệm.
 ### **4.3	Phương Pháp Đánh Giá**
 #### **4.3.1	 Độ Chính Xác (Accuracy):**
-Chúng tôi sẽ sử dụng độ chính xác để đánh giá khả năng dự đoán của mô hình trên tập kiểm thử.
+- Chúng tôi sẽ sử dụng độ chính xác để đánh giá khả năng dự đoán của mô hình trên tập kiểm thử.
 #### **4.3.2	 Hiệu Suất Học Liên Tục:**
-Sử dụng các thước đo như EWC loss để đánh giá hiệu suất của mô hình trong việc học liên tục mà không làm suy giảm hiệu suất trên dữ liệu đã biết.
+- Sử dụng các thước đo như EWC loss để đánh giá hiệu suất của mô hình trong việc học liên tục mà không làm suy giảm hiệu suất trên dữ liệu đã biết.
 #### **4.3.3	 Độ Đa Dạng của Tập Kiểm Thử:**
-Chúng tôi sẽ sử dụng các thước đo để đánh giá độ đa dạng và độ khó của các tập kiểm thử được tạo ra.
-Quá trình đánh giá này sẽ giúp chúng tôi đảm bảo rằng giải pháp của mình không chỉ nâng cao khả năng học liên tục mà còn duy trì độ chính xác và linh hoạt trong các tình huống thử nghiệm thực tế.
+- Chúng tôi sẽ sử dụng các thước đo để đánh giá độ đa dạng và độ khó của các tập kiểm thử được tạo ra.
+- Quá trình đánh giá này sẽ giúp chúng tôi đảm bảo rằng giải pháp của mình không chỉ nâng cao khả năng học liên tục mà còn duy trì độ chính xác và linh hoạt trong các tình huống thử nghiệm thực tế.
 ## **5.	Dự Kiến Kết Quả**
 ### **5.1	 Kết Quả Dự Kiến**
 
 #### **5.1.1	 Hiệu Suất Học Liên Tục**
-Dự kiến mô hình của tôi sẽ có khả năng học liên tục mạnh mẽ, thể hiện bằng việc giảm thiểu hiện tượng quên đồng thời duy trì hoặc cải thiện hiệu suất trên dữ liệu đã biết. Độ chính xác trên các nhiệm vụ học liên tục được dự kiến sẽ đạt mức cao.
+- Dự kiến mô hình của tôi sẽ có khả năng học liên tục mạnh mẽ, thể hiện bằng việc giảm thiểu hiện tượng quên đồng thời duy trì hoặc cải thiện hiệu suất trên dữ liệu đã biết. Độ chính xác trên các nhiệm vụ học liên tục được dự kiến sẽ đạt mức cao.
 
 #### **5.1.2	 Test Production Đa Dạng và Hiệu Quả**
-Tập kiểm thử được tạo ra dự kiến sẽ đa dạng và phản ánh tốt khả năng dự đoán của mô hình trong nhiều tình huống thách thức. Kết quả kiểm thử sẽ chứng minh khả năng của mô hình trong việc xử lý đa dạng dữ liệu và tình huống thực tế.
+- Tập kiểm thử được tạo ra dự kiến sẽ đa dạng và phản ánh tốt khả năng dự đoán của mô hình trong nhiều tình huống thách thức. Kết quả kiểm thử sẽ chứng minh khả năng của mô hình trong việc xử lý đa dạng dữ liệu và tình huống thực tế.
 
 #### **5.1.3	 Khả Năng Ứng Dụng Thực Tế**
-Tôi kỳ vọng mô hình của mình sẽ có khả năng ứng dụng mạnh mẽ trong các lĩnh vực thực tế. Điều này có thể bao gồm ứng dụng trong y tế, tự động hóa, hay các lĩnh vực đòi hỏi khả năng học liên tục và độ chính xác cao.
+- Tôi kỳ vọng mô hình của mình sẽ có khả năng ứng dụng mạnh mẽ trong các lĩnh vực thực tế. Điều này có thể bao gồm ứng dụng trong y tế, tự động hóa, hay các lĩnh vực đòi hỏi khả năng học liên tục và độ chính xác cao.
 
 ### **5.2	Đề Xuất Cải Tiến và Ứng Dụng Thực Tế**
 
 #### **5.2.1	 Tối Ưu Hóa Hiệu Suất Học Liên Tục**
-Dựa trên kết quả nghiên cứu, chúng tôi sẽ đề xuất các phương pháp tối ưu hóa khả năng học liên tục, bao gồm việc thử nghiệm các biến thể của các phương pháp EWC, GEM, hoặc các kỹ thuật mới nổi bật.
+- Dựa trên kết quả nghiên cứu, chúng tôi sẽ đề xuất các phương pháp tối ưu hóa khả năng học liên tục, bao gồm việc thử nghiệm các biến thể của các phương pháp EWC, GEM, hoặc các kỹ thuật mới nổi bật.
 
 #### **5.2.2	 Mở Rộng Ứng Dụng Thực Tế**
 -	Chúng tôi sẽ đề xuất các phương pháp để mở rộng ứng dụng của mô hình trong nhiều lĩnh vực thực tế khác nhau. Điều này có thể bao gồm tối ưu hóa cho các ngữ cảnh công nghiệp cụ thể hoặc phát triển các biến thể của mô hình để phù hợp với yêu cầu cụ thể.
 
 #### **5.2.3	Cải Tiến Quá Trình Test Production**
-Chúng tôi sẽ đề xuất cải tiến quá trình tạo ra các tập kiểm thử để làm cho chúng đa dạng hơn và phản ánh tốt hơn thực tế. Điều này có thể liên quan đến việc tăng cường độ khó của các nhiệm vụ kiểm thử và thử nghiệm mô hình trong các điều kiện khác nhau.
+- Chúng tôi sẽ đề xuất cải tiến quá trình tạo ra các tập kiểm thử để làm cho chúng đa dạng hơn và phản ánh tốt hơn thực tế. Điều này có thể liên quan đến việc tăng cường độ khó của các nhiệm vụ kiểm thử và thử nghiệm mô hình trong các điều kiện khác nhau.
 
 #### **5.2.4	 Hướng Dẫn Tích Hợp Các Kỹ Thuật Mới**
-Chúng tôi sẽ đề xuất hướng dẫn cách tích hợp các kỹ thuật mới nhất trong lĩnh vực Continual Learning và Test Production vào mô hình của mình, nhằm cải thiện hiệu suất và đáng tin cậy của nó.
+- Chúng tôi sẽ đề xuất hướng dẫn cách tích hợp các kỹ thuật mới nhất trong lĩnh vực Continual Learning và Test Production vào mô hình của mình, nhằm cải thiện hiệu suất và đáng tin cậy của nó.
 
 Tóm lại, những đề xuất cải tiến và ứng dụng thực tế này sẽ giúp mô hình không chỉ là một giải pháp nghiên cứu mà còn là một công cụ hữu ích và linh hoạt cho nhiều ứng dụng thực tế.
 
