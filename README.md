@@ -104,7 +104,7 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 
 # **CHƯƠNG 2: TÌM HIỂU VỀ CONTINUAL LEARNING VÀ TEST PRODUCTION KHI XÂY DỰNG MỘT GIẢI PHÁP HỌC MÁY ĐỂ GIẢI QUYẾT MỘT BÀI TOÁN NÀO ĐÓ.**
 
-## **1.	Giới thiệu **
+## **1.	Giới thiệu**
 -	Trong bối cảnh phát triển nhanh chóng của lĩnh vực học máy, việc xây dựng các giải pháp linh hoạt và mạnh mẽ trở nên ngày càng quan trọng. Trong nghiên cứu này, tôi tập trung vào việc đánh giá hai khía cạnh quan trọng: Continual Learning và Test Production. Chúng ta sẽ tìm hiểu về cách áp dụng chúng để xây dựng một giải pháp học máy hiệu quả cho một bài toán cụ thể.
 
 ## **2.	Nền Tảng Lý Thuyết**
