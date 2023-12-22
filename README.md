@@ -83,55 +83,49 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 - Đôi khi có thể quá tối ưu và dẫn đến overfitting.
 
 #### **4.2.4	RMSprop**
--	Ưu Điểm:
-•	Hiệu quả trong việc xử lý dữ liệu không đồng nhất.
-•	Giảm khả năng dao động của learning rate.
--	Nhược Điểm:
-•	Cần tuning learning rate.
-•	Có thể dẫn đến vanishing gradient problem.
-5.	Gợi Ý và Kết Luận
--	Chọn Optimizer Tùy Theo Bài Toán: Nếu bài toán có dữ liệu lớn, Adam hoặc RMSprop có thể là lựa chọn tốt. Đối với bài toán nhỏ, Stochastic Gradient Descent có thể phù hợp hơn.
+**Ưu Điểm:**
+- Hiệu quả trong việc xử lý dữ liệu không đồng nhất.
+- Giảm khả năng dao động của learning rate.
+**Nhược Điểm:**
+- Cần tuning learning rate.
+- Có thể dẫn đến vanishing gradient problem.
+## **5.	Gợi Ý và Kết Luận**
+-	**Chọn Optimizer Tùy Theo Bài Toán:** Nếu bài toán có dữ liệu lớn, Adam hoặc RMSprop có thể là lựa chọn tốt. Đối với bài toán nhỏ, Stochastic Gradient Descent có thể phù hợp hơn.
 
--	Tuning Siêu Tham Số: Quá trình tuning learning rate là quan trọng để đạt được hiệu suất tối ưu. Sử dụng các kỹ thuật như grid search hoặc random search để tìm giá trị tốt nhất.
+-	**Tuning Siêu Tham Số:** Quá trình tuning learning rate là quan trọng để đạt được hiệu suất tối ưu. Sử dụng các kỹ thuật như grid search hoặc random search để tìm giá trị tốt nhất.
 
--	Đánh Giá Tổng Thể: Tổng hợp hiệu suất, tốc độ hội tụ, và khả năng chống overfitting để đưa ra quyết định chọn optimizer phù hợp với bài toán cụ thể.
+-	**Đánh Giá Tổng Thể:** Tổng hợp hiệu suất, tốc độ hội tụ, và khả năng chống overfitting để đưa ra quyết định chọn optimizer phù hợp với bài toán cụ thể.
 
--	Kiểm Tra Trên Nhiều Bài Toán: Kết quả có thể thay đổi tùy thuộc vào loại bài toán, vì vậy quan sát và kiểm tra trên nhiều bộ dữ liệu và cấu trúc mô hình khác nhau là quan trọng.
+-	**Kiểm Tra Trên Nhiều Bài Toán:** Kết quả có thể thay đổi tùy thuộc vào loại bài toán, vì vậy quan sát và kiểm tra trên nhiều bộ dữ liệu và cấu trúc mô hình khác nhau là quan trọng.
 
+# **CHƯƠNG 2: TÌM HIỂU VỀ CONTINUAL LEARNING VÀ TEST PRODUCTION KHI XÂY DỰNG MỘT GIẢI PHÁP HỌC MÁY ĐỂ GIẢI QUYẾT MỘT BÀI TOÁN NÀO ĐÓ.**
 
-
-
-
-
-
-
-CHƯƠNG 2: TÌM HIỂU VỀ CONTINUAL LEARNING VÀ TEST PRODUCTION KHI XÂY DỰNG MỘT GIẢI PHÁP HỌC MÁY ĐỂ GIẢI QUYẾT MỘT BÀI TOÁN NÀO ĐÓ.
-
-1.	Giới thiệu 
+## **1.	Giới thiệu **
 -	Trong bối cảnh phát triển nhanh chóng của lĩnh vực học máy, việc xây dựng các giải pháp linh hoạt và mạnh mẽ trở nên ngày càng quan trọng. Trong nghiên cứu này, tôi tập trung vào việc đánh giá hai khía cạnh quan trọng: Continual Learning và Test Production. Chúng ta sẽ tìm hiểu về cách áp dụng chúng để xây dựng một giải pháp học máy hiệu quả cho một bài toán cụ thể.
 
-2.	Nền Tảng Lý Thuyết
-Continual Learning (Học Liên Tục):
--	Continual Learning là một lĩnh vực trong học máy mà mô hình cố gắng học từ dữ liệu mới mà nó gặp phải mà không làm mất đi kiến thức đã học trước đó. Điều này giống như cách con người học từ trải nghiệm mới mà không quên đi những gì họ đã biết trước đó. Mục tiêu của Continual Learning là duy trì và mở rộng kiến thức của mô hình theo thời gian, giúp nó thích ứng với sự thay đổi trong dữ liệu và môi trường.
+## **2.	Nền Tảng Lý Thuyết**
+**Continual Learning (Học Liên Tục):**
+-	**Continual Learning** là một lĩnh vực trong học máy mà mô hình cố gắng học từ dữ liệu mới mà nó gặp phải mà không làm mất đi kiến thức đã học trước đó. Điều này giống như cách con người học từ trải nghiệm mới mà không quên đi những gì họ đã biết trước đó. Mục tiêu của Continual Learning là duy trì và mở rộng kiến thức của mô hình theo thời gian, giúp nó thích ứng với sự thay đổi trong dữ liệu và môi trường.
 
 -	Các thách thức chính của Continual Learning bao gồm hiện tượng "quên" (forgetting), khi mô hình quên thông tin quan trọng về dữ liệu cũ khi học từ dữ liệu mới. Các phương pháp trong lĩnh vực này thường tập trung vào việc xây dựng các mô hình có khả năng giữ lại kiến thức trước đó, thậm chí khi đối mặt với dữ liệu mới và không quen thuộc.
-Test Production (Kiểm Thử Hiệu Suất):
--	Test Production là quá trình kiểm thử mô hình học máy để đảm bảo rằng nó hoạt động đúng đắn và hiệu quả trên dữ liệu mới. Khi một mô hình được triển khai trong môi trường thực tế, quá trình kiểm thử là cực kỳ quan trọng để đảm bảo tính ổn định và đáng tin cậy của mô hình.
+
+**Test Production (Kiểm Thử Hiệu Suất):**
+-	**Test Production** là quá trình kiểm thử mô hình học máy để đảm bảo rằng nó hoạt động đúng đắn và hiệu quả trên dữ liệu mới. Khi một mô hình được triển khai trong môi trường thực tế, quá trình kiểm thử là cực kỳ quan trọng để đảm bảo tính ổn định và đáng tin cậy của mô hình.
 -	Trong Test Production, các tập dữ liệu thử nghiệm được sử dụng để đánh giá hiệu suất của mô hình. Điều này có thể bao gồm kiểm tra độ chính xác, độ đồng nhất, và các độ đo khác tùy thuộc vào bài toán cụ thể. Mục tiêu là đảm bảo rằng mô hình không chỉ hoạt động tốt trên dữ liệu huấn luyện mà còn trên dữ liệu mà nó chưa từng gặp phải trước đó.
 -	Cả hai khái niệm này đều quan trọng để xây dựng và duy trì các mô hình học máy có khả năng thích ứng và đáng tin cậy trong môi trường thực tế, và chúng thường được kết hợp để tạo ra các giải pháp mạnh mẽ và linh hoạt.
 
-3.	Mục Tiêu Nghiên Cứu
--	Mục tiêu chính của nghiên cứu này là xây dựng và phát triển một giải pháp học máy có khả năng học liên tục mạnh mẽ và sản xuất kiểm thử hiệu quả. Chi tiết mục tiêu chính bao gồm:
+## **3.	Mục Tiêu Nghiên Cứu**
+**Mục tiêu chính** của nghiên cứu này là xây dựng và phát triển một giải pháp học máy có khả năng học liên tục mạnh mẽ và sản xuất kiểm thử hiệu quả. Chi tiết mục tiêu chính bao gồm:
 
-o	Tối Ưu Hóa Khả Năng Học Liên Tục: Mục tiêu là tối ưu hóa khả năng học liên tục của mô hình, giảm thiểu hiện tượng quên (catastrophic forgetting) và duy trì khả năng học trên dữ liệu mới mà không ảnh hưởng đến khả năng dự đoán trên dữ liệu đã biết.
-o	Sản Xuất Kiểm Thử Hiệu Quả: Mục tiêu là phát triển quá trình sản xuất kiểm thử đa dạng và biểu diễn tốt khả năng dự đoán của mô hình. Điều này đảm bảo rằng mô hình không chỉ học tốt từ dữ liệu mới mà còn duy trì khả năng dự đoán chính xác trong nhiều tình huống thử nghiệm.
-o	Xây Dựng Mô Hình Linh Hoạt: Mục tiêu cuối cùng là xây dựng một mô hình học máy linh hoạt, có khả năng thích ứng với dữ liệu mới mà không làm suy giảm hiệu suất trên dữ liệu cũ. Mô hình này sẽ không chỉ giải quyết hiệu quả bài toán học liên tục mà còn có khả năng chứng minh sự hiệu quả của nó thông qua quá trình kiểm thử.
--	Chung quanh mục tiêu chính này, nghiên cứu sẽ đi sâu vào các khía cạnh của Continual Learning và Test Production để xây dựng một giải pháp toàn diện và hiệu quả trong việc giải quyết bài toán học máy trong ngữ cảnh học liên tục và sản xuất kiểm thử.
-4.	Phương pháp nghiên cứu
-4.1	Thiết Kế Nghiên Cứu:
-4.1.1	 Quy Trình Huấn Luyện Ban Đầu:
--	Để đảm bảo mô hình ban đầu có khả năng học tốt và đa dạng, chúng tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng, chẳng hạn như CIFAR-100 hoặc ImageNet. Quá trình huấn luyện sẽ tập trung vào việc xây dựng một cơ sở kiến thức mạnh mẽ và linh hoạt.
-4.1.2	 Quá Trình Học Liên Tục:
+- Tối Ưu Hóa Khả Năng Học Liên Tục: Mục tiêu là tối ưu hóa khả năng học liên tục của mô hình, giảm thiểu hiện tượng quên (catastrophic forgetting) và duy trì khả năng học trên dữ liệu mới mà không ảnh hưởng đến khả năng dự đoán trên dữ liệu đã biết.
+- Sản Xuất Kiểm Thử Hiệu Quả: Mục tiêu là phát triển quá trình sản xuất kiểm thử đa dạng và biểu diễn tốt khả năng dự đoán của mô hình. Điều này đảm bảo rằng mô hình không chỉ học tốt từ dữ liệu mới mà còn duy trì khả năng dự đoán chính xác trong nhiều tình huống thử nghiệm.
+- Xây Dựng Mô Hình Linh Hoạt: Mục tiêu cuối cùng là xây dựng một mô hình học máy linh hoạt, có khả năng thích ứng với dữ liệu mới mà không làm suy giảm hiệu suất trên dữ liệu cũ. Mô hình này sẽ không chỉ giải quyết hiệu quả bài toán học liên tục mà còn có khả năng chứng minh sự hiệu quả của nó thông qua quá trình kiểm thử.
+Chung quanh mục tiêu chính này, nghiên cứu sẽ đi sâu vào các khía cạnh của Continual Learning và Test Production để xây dựng một giải pháp toàn diện và hiệu quả trong việc giải quyết bài toán học máy trong ngữ cảnh học liên tục và sản xuất kiểm thử.
+## **4.	Phương pháp nghiên cứu**
+### **4.1	Thiết Kế Nghiên Cứu**
+#### **4.1.1	 Quy Trình Huấn Luyện Ban Đầu**
+Để đảm bảo mô hình ban đầu có khả năng học tốt và đa dạng, tôi sẽ sử dụng một tập dữ liệu lớn và đa dạng, chẳng hạn như CIFAR-100 hoặc ImageNet. Quá trình huấn luyện sẽ tập trung vào việc xây dựng một cơ sở kiến thức mạnh mẽ và linh hoạt.
+#### **4.1.2	 Quá Trình Học Liên Tục**
 -	Sau giai đoạn huấn luyện ban đầu, chúng tôi sẽ triển khai quá trình học liên tục bằng cách sử dụng các phương pháp như Elastic Weight Consolidation (EWC) hoặc Gradient Episodic Memory (GEM). Mục tiêu là giảm thiểu hiện tượng quên và duy trì hiệu suất trên dữ liệu đã biết.
 4.1.3	 Sản Xuất Kiểm Thử:
 -	Quy trình này sẽ bao gồm việc tạo ra một bộ các tập kiểm thử đa dạng và thách thức. Chúng tôi sẽ đảm bảo rằng tập kiểm thử không chỉ phản ánh đa dạng của dữ liệu mà mô hình có thể gặp trong thực tế mà còn kiểm thử mô hình dưới nhiều điều kiện khác nhau.
