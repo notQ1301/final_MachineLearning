@@ -2,90 +2,87 @@
 ## **1.	Giới Thiệu**
 -	Trong nghiên cứu này, tôi tập trung vào việc tìm hiểu và so sánh các phương pháp optimizer trong quá trình huấn luyện mô hình học máy. Optimizer chơi một vai trò quan trọng trong việc điều chỉnh các trọng số của mô hình dự đoán để tối ưu hóa hiệu suất. Tôi nghiên cứu các phương pháp thông dụng như Gradient Descent, Adam, RMSProp, và SGD, đồng thời xem xét hiệu suất của chúng trên một loạt các tập dữ liệu và kiến trúc mô hình khác nhau.
 ## **2.	Nền Tảng Lý Thuyết**
-### 2.1	Tổng quan về Optimizer
+### **2.1	Tổng quan về Optimizer**
 -	Optimizer là một thành phần quan trọng trong quá trình huấn luyện mô hình máy học và deep learning. Vai trò chính của optimizer là tối ưu hóa các tham số của mô hình để giảm thiểu hàm mất mát. Hàm mất mát đo lường sự chênh lệch giữa giá trị dự đoán của mô hình và giá trị thực tế, và mục tiêu của quá trình huấn luyện là tìm ra các tham số mô hình sao cho hàm mất mát đạt được giá trị thấp nhất.
 
 -	Dưới đây là một số điểm chính về vai trò và cách hoạt động của optimizer:
 
-1.	Tối Ưu Hóa Tham Số: Optimizer giúp điều chỉnh các tham số của mô hình để giảm thiểu hàm mất mát. Các tham số này thường liên quan đến trọng số của các liên kết giữa các đơn vị trong mạng nơ-ron.
+**1.	Tối Ưu Hóa Tham Số:** Optimizer giúp điều chỉnh các tham số của mô hình để giảm thiểu hàm mất mát. Các tham số này thường liên quan đến trọng số của các liên kết giữa các đơn vị trong mạng nơ-ron.
 
-2.	Gradient Descent (GD): Phương pháp phổ biến nhất trong tối ưu hóa là gradient descent. Trong quá trình này, optimizer sử dụng đạo hàm của hàm mất mát theo từng tham số để xác định hướng và kích thước cập nhật. Các biến thể của GD bao gồm Stochastic Gradient Descent (SGD), Mini-batch Gradient Descent và Batch Gradient Descent.
+**2.	Gradient Descent (GD):** Phương pháp phổ biến nhất trong tối ưu hóa là gradient descent. Trong quá trình này, optimizer sử dụng đạo hàm của hàm mất mát theo từng tham số để xác định hướng và kích thước cập nhật. Các biến thể của GD bao gồm Stochastic Gradient Descent (SGD), Mini-batch Gradient Descent và Batch Gradient Descent.
 
-3.	Learning Rate: Là một tham số quan trọng của optimizer, learning rate quyết định kích thước của bước di chuyển trong không gian tham số. Giá trị learning rate quá cao có thể làm cho quá trình hội tụ nhanh chóng nhưng có thể bỏ lỡ điểm tối ưu, trong khi giá trị quá thấp có thể dẫn đến quá trình hội tụ chậm.
+**3.	Learning Rate:** Là một tham số quan trọng của optimizer, learning rate quyết định kích thước của bước di chuyển trong không gian tham số. Giá trị learning rate quá cao có thể làm cho quá trình hội tụ nhanh chóng nhưng có thể bỏ lỡ điểm tối ưu, trong khi giá trị quá thấp có thể dẫn đến quá trình hội tụ chậm.
 
-4.	Các Thuật Toán Tối Ưu Hóa Nâng Cao: Ngoài gradient descent, có nhiều thuật toán tối ưu hóa nâng cao như Adam, RMSprop, Adagrad, và nhiều thuật toán khác. Các thuật toán này thường kết hợp các kỹ thuật như momentum, giảm dốc theo từng tham số, và điều chỉnh tỷ lệ học để cải thiện hiệu suất tối ưu hóa.
+**4.	Các Thuật Toán Tối Ưu Hóa Nâng Cao:** Ngoài gradient descent, có nhiều thuật toán tối ưu hóa nâng cao như Adam, RMSprop, Adagrad, và nhiều thuật toán khác. Các thuật toán này thường kết hợp các kỹ thuật như momentum, giảm dốc theo từng tham số, và điều chỉnh tỷ lệ học để cải thiện hiệu suất tối ưu hóa.
 
-5.	Regularization: Một số optimizer còn hỗ trợ các kỹ thuật regularization như L1 và L2 regularization để ngăn chặn overfitting trong quá trình huấn luyện.
+**5.	Regularization:** Một số optimizer còn hỗ trợ các kỹ thuật regularization như L1 và L2 regularization để ngăn chặn overfitting trong quá trình huấn luyện.
 
-6.	Stochastic Optimization: Trong môi trường thực tế, dữ liệu có thể lớn và không thể đưa toàn bộ dữ liệu vào mô hình mỗi lần cập nhật. Stochastic Optimization sử dụng một lượng nhỏ dữ liệu ngẫu nhiên (mini-batch) để tính gradient và cập nhật tham số.
+**6.	Stochastic Optimization:** Trong môi trường thực tế, dữ liệu có thể lớn và không thể đưa toàn bộ dữ liệu vào mô hình mỗi lần cập nhật. Stochastic Optimization sử dụng một lượng nhỏ dữ liệu ngẫu nhiên (mini-batch) để tính gradient và cập nhật tham số.
 
 -	Tóm lại, optimizer chơi một vai trò quan trọng trong việc đào tạo mô hình máy học và deep learning bằng cách giúp điều chỉnh các tham số để mô hình có thể học từ dữ liệu và đạt được hiệu suất tối ưu. Sự kết hợp giữa hàm mất mát, gradient descent, và các thuật toán tối ưu hóa nâng cao giúp mô hình hội tụ nhanh chóng và tránh overfitting.
 
-3.	Phương Pháp Nghiên Cứu
-3.1	Bộ Dữ Liệu 
--	Chọn bộ dữ liệu là một quyết định quan trọng để đảm bảo tính khả quan của nghiên cứu và đánh giá hiệu suất của các phương pháp optimizer. Dưới đây là một số yếu tố quan trọng cần xem xét khi lựa chọn bộ dữ liệu:
+## **3.	Phương Pháp Nghiên Cứu**
+### **3.1	Bộ Dữ Liệu**
+-	**Chọn bộ dữ liệu** là một quyết định quan trọng để đảm bảo tính khả quan của nghiên cứu và đánh giá hiệu suất của các phương pháp optimizer. Dưới đây là một số yếu tố quan trọng cần xem xét khi lựa chọn bộ dữ liệu:
 
--	Đại Diện: Bộ dữ liệu nên đại diện cho bối cảnh hoặc lĩnh vực mà mô hình sẽ được triển khai. Điều này giúp đảm bảo rằng kết quả của nghiên cứu có tính ứng dụng và có thể chuyển giao vào thực tế.
+-	**Đại Diện:** Bộ dữ liệu nên đại diện cho bối cảnh hoặc lĩnh vực mà mô hình sẽ được triển khai. Điều này giúp đảm bảo rằng kết quả của nghiên cứu có tính ứng dụng và có thể chuyển giao vào thực tế.
 
--	Kích Thước: Bộ dữ liệu nên đủ lớn để đảm bảo tính đại diện và độ tin cậy của kết quả. Tuy nhiên, cũng cần xem xét vấn đề về tài nguyên tính toán và thời gian huấn luyện.
+-	**Kích Thước:** Bộ dữ liệu nên đủ lớn để đảm bảo tính đại diện và độ tin cậy của kết quả. Tuy nhiên, cũng cần xem xét vấn đề về tài nguyên tính toán và thời gian huấn luyện.
 
--	Phân Phối Dữ Liệu: Kiểm tra phân phối của dữ liệu để đảm bảo không có sự chệch lệch lớn, đặc biệt là trong trường hợp dữ liệu không cân bằng.
+-	**Phân Phối Dữ Liệu:** Kiểm tra phân phối của dữ liệu để đảm bảo không có sự chệch lệch lớn, đặc biệt là trong trường hợp dữ liệu không cân bằng.
 
--	Dữ Liệu Kiểm Tra và Dữ Liệu Kiểm Soát: Chia bộ dữ liệu thành tập huấn luyện và tập kiểm tra để đánh giá hiệu suất mô hình trên dữ liệu mới. Cân nhắc sử dụng kỹ thuật kiểm soát như cross-validation để có kết quả đánh giá ổn định.
+-	**Dữ Liệu Kiểm Tra và Dữ Liệu Kiểm Soát:** Chia bộ dữ liệu thành tập huấn luyện và tập kiểm tra để đánh giá hiệu suất mô hình trên dữ liệu mới. Cân nhắc sử dụng kỹ thuật kiểm soát như cross-validation để có kết quả đánh giá ổn định.
 
-3.2	Thiết Lập Thử Nghiệm
-3.2.1	Cấu Trúc Mô Hình
--	Xác định cấu trúc mô hình là một phần quan trọng của thiết lập thử nghiệm. Điều này bao gồm:
+### **3.2	Thiết Lập Thử Nghiệm**
+#### **3.2.1	Cấu Trúc Mô Hình**
+Xác định cấu trúc mô hình là một phần quan trọng của thiết lập thử nghiệm. Điều này bao gồm:
+- Kiến Trúc Mạng Nơ-ron: Xác định số lớp, số đơn vị trong mỗi lớp, và kiểu kết nối giữa các đơn vị.
+- Hàm Kích Hoạt: Chọn hàm kích hoạt cho mỗi lớp. Các hàm kích hoạt phổ biến bao gồm ReLU, Sigmoid, và Tanh.
 
-•	Kiến Trúc Mạng Nơ-ron: Xác định số lớp, số đơn vị trong mỗi lớp, và kiểu kết nối giữa các đơn vị.
+#### **3.2.2	Siêu Tham Số**
+Xác định giá trị cho các siêu tham số của mô hình và optimizer. Các siêu tham số quan trọng bao gồm:
+•	**Learning Rate:** Xác định tốc độ học của mô hình. Cần kiểm tra và điều chỉnh giá trị learning rate để đảm bảo quá trình học tốt.
+•	**Batch Size:** Chọn kích thước mini-batch phù hợp với bộ nhớ và tài nguyên tính toán.
+•	**Số Lượng Epochs:** Quyết định số lần duyệt qua toàn bộ bộ dữ liệu huấn luyện. Cần theo dõi quá trình học để xác định khi nào nên dừng để tránh overfitting.
+•	**Tỉ Lệ Dropout và L1/L2 Regularization:** Nếu sử dụng, xác định tỉ lệ dropout và các tham số regularization.
+#### **3.2.3	Phương Pháp Đánh Giá Hiệu Suất**
+Chọn các phương pháp đánh giá hiệu suất phù hợp để đo lường khả năng tổng quát hóa của mô hình trên dữ liệu mới. Các phương pháp bao gồm:
 
-•	Hàm Kích Hoạt: Chọn hàm kích hoạt cho mỗi lớp. Các hàm kích hoạt phổ biến bao gồm ReLU, Sigmoid, và Tanh.
-
-3.2.2	Siêu Tham Số
--	Xác định giá trị cho các siêu tham số của mô hình và optimizer. Các siêu tham số quan trọng bao gồm:
-•	Learning Rate: Xác định tốc độ học của mô hình. Cần kiểm tra và điều chỉnh giá trị learning rate để đảm bảo quá trình học tốt.
-•	Batch Size: Chọn kích thước mini-batch phù hợp với bộ nhớ và tài nguyên tính toán.
-•	Số Lượng Epochs: Quyết định số lần duyệt qua toàn bộ bộ dữ liệu huấn luyện. Cần theo dõi quá trình học để xác định khi nào nên dừng để tránh overfitting.
-•	Tỉ Lệ Dropout và L1/L2 Regularization: Nếu sử dụng, xác định tỉ lệ dropout và các tham số regularization.
-3.2.3	Phương Pháp Đánh Giá Hiệu Suất
--	Chọn các phương pháp đánh giá hiệu suất phù hợp để đo lường khả năng tổng quát hóa của mô hình trên dữ liệu mới. Các phương pháp bao gồm:
-
-•	Hàm Mất Mát: Xác định hàm mất mát phù hợp với bài toán cụ thể (ví dụ: cross-entropy loss cho bài toán phân loại).
-•	Chỉ Số Đánh Giá (Accuracy, Precision, Recall, F1-score): Đánh giá hiệu suất của mô hình trên các khía cạnh khác nhau của dữ liệu.
-•	Ma Trận Confusion: Cung cấp cái nhìn chi tiết về số lượng dự đoán đúng và sai trong từng nhóm.
-•	Đồ Thị Learning Curve: Hiển thị sự biến động của hàm mất mát và chỉ số đánh giá qua các epoch để kiểm tra quá trình học.
+- **Hàm Mất Mát:** Xác định hàm mất mát phù hợp với bài toán cụ thể (ví dụ: cross-entropy loss cho bài toán phân loại).
+- **Chỉ Số Đánh Giá (Accuracy, Precision, Recall, F1-score):** Đánh giá hiệu suất của mô hình trên các khía cạnh khác nhau của dữ liệu.
+- **Ma Trận Confusion:** Cung cấp cái nhìn chi tiết về số lượng dự đoán đúng và sai trong từng nhóm.
+- **Đồ Thị Learning Curve:** Hiển thị sự biến động của hàm mất mát và chỉ số đánh giá qua các epoch để kiểm tra quá trình học.
 Bằng cách cân nhắc và thiết lập đúng bộ dữ liệu và các tham số trong quá trình thử nghiệm, bạn có thể đảm bảo tính chính xác và ổn định của kết quả nghiên cứu và đánh giá hiệu suất của các phương pháp optimizer.
-4.	Kết Quả và Thảo Luận
-4.1	So Sánh Hiệu Suất
--	Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của các phương pháp optimizer trong các điều kiện khác nhau. Cung cấp thông tin về:
-•	Tốc Độ Hội Tụ: So sánh thời gian cần thiết để mô hình đạt đến giá trị tối ưu. Phân tích sự ảnh hưởng của learning rate và cấu trúc mô hình đối với tốc độ hội tụ.
-•	Độ Chính Xác: Đánh giá độ chính xác của mô hình khi sử dụng các optimizer khác nhau. Xem xét sự ảnh hưởng của learning rate và số lượng epoch.
-•	Khả Năng Chống Quá Mức (Overfitting): Kiểm tra và so sánh khả năng của các optimizer trong việc ngăn chặn overfitting, đặc biệt là khi sử dụng các kỹ thuật như dropout và regularization.
-4.2	Ưu và Nhược Điểm
-4.2.1	Gradient Descent (GD)
--	Ưu Điểm:
-•	Dễ triển khai và hiểu.
-•	Hiệu quả trên các bài toán lớn với dữ liệu đủ lớn.
--	Nhược Điểm:
-•	Cần chọn learning rate phù hợp để tránh overshooting hoặc hội tụ quá chậm.
-•	Nhạy cảm với dữ liệu nhiễu.
-4.2.2	Stochastic Gradient Descent (SGD)
--	Ưu Điểm:
-•	Hiệu quả trên dữ liệu lớn.
-•	Giảm khả năng rơi vào cực tiểu cục bộ.
--	Nhược Điểm:
-•	Cần tuning kỹ lưỡng về learning rate.
-•	Khả năng dao động khi dữ liệu nhiễu.
-4.2.3	Adam
--	Ưu Điểm:
-•	Tích hợp tốt giữa momentum và RMSprop.
-•	Hiệu suất tốt trên nhiều bài toán.
--	Nhược Điểm:
-•	Cần tuning learning rate.
-•	Đôi khi có thể quá tối ưu và dẫn đến overfitting.
+## **4.	Kết Quả và Thảo Luận**
+### **4.1	So Sánh Hiệu Suất**
+Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của các phương pháp optimizer trong các điều kiện khác nhau. Cung cấp thông tin về:
+- **Tốc Độ Hội Tụ:** So sánh thời gian cần thiết để mô hình đạt đến giá trị tối ưu. Phân tích sự ảnh hưởng của learning rate và cấu trúc mô hình đối với tốc độ hội tụ.
+- **Độ Chính Xác:** Đánh giá độ chính xác của mô hình khi sử dụng các optimizer khác nhau. Xem xét sự ảnh hưởng của learning rate và số lượng epoch.
+- **Khả Năng Chống Quá Mức (Overfitting):** Kiểm tra và so sánh khả năng của các optimizer trong việc ngăn chặn overfitting, đặc biệt là khi sử dụng các kỹ thuật như dropout và regularization.
+### **4.2	Ưu và Nhược Điểm**
+#### **4.2.1	Gradient Descent (GD)**
+**Ưu Điểm:**
+- Dễ triển khai và hiểu.
+- Hiệu quả trên các bài toán lớn với dữ liệu đủ lớn.
+**Nhược Điểm:**
+- Cần chọn learning rate phù hợp để tránh overshooting hoặc hội tụ quá chậm.
+- Nhạy cảm với dữ liệu nhiễu.
+#### **4.2.2	Stochastic Gradient Descent (SGD)**
+**Ưu Điểm:**
+-	Hiệu quả trên dữ liệu lớn.
+-	Giảm khả năng rơi vào cực tiểu cục bộ.
+**Nhược Điểm:**
+- Cần tuning kỹ lưỡng về learning rate.
+- Khả năng dao động khi dữ liệu nhiễu.
+#### **4.2.3	Adam**
+**Ưu Điểm:**
+- Tích hợp tốt giữa momentum và RMSprop.
+- Hiệu suất tốt trên nhiều bài toán.
+**Nhược Điểm:**
+- Cần tuning learning rate.
+- Đôi khi có thể quá tối ưu và dẫn đến overfitting.
 
-
-4.2.4	RMSprop
+#### **4.2.4	RMSprop**
 -	Ưu Điểm:
 •	Hiệu quả trong việc xử lý dữ liệu không đồng nhất.
 •	Giảm khả năng dao động của learning rate.
