@@ -64,6 +64,7 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 **Ưu Điểm:**
 - Dễ triển khai và hiểu.
 - Hiệu quả trên các bài toán lớn với dữ liệu đủ lớn.
+  
 **Nhược Điểm:**
 - Cần chọn learning rate phù hợp để tránh overshooting hoặc hội tụ quá chậm.
 - Nhạy cảm với dữ liệu nhiễu.
@@ -71,6 +72,7 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 **Ưu Điểm:**
 -	Hiệu quả trên dữ liệu lớn.
 -	Giảm khả năng rơi vào cực tiểu cục bộ.
+  
 **Nhược Điểm:**
 - Cần tuning kỹ lưỡng về learning rate.
 - Khả năng dao động khi dữ liệu nhiễu.
@@ -78,6 +80,7 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 **Ưu Điểm:**
 - Tích hợp tốt giữa momentum và RMSprop.
 - Hiệu suất tốt trên nhiều bài toán.
+  
 **Nhược Điểm:**
 - Cần tuning learning rate.
 - Đôi khi có thể quá tối ưu và dẫn đến overfitting.
@@ -86,6 +89,7 @@ Trình bày kết quả thực nghiệm với sự so sánh hiệu suất của 
 **Ưu Điểm:**
 - Hiệu quả trong việc xử lý dữ liệu không đồng nhất.
 - Giảm khả năng dao động của learning rate.
+  
 **Nhược Điểm:**
 - Cần tuning learning rate.
 - Có thể dẫn đến vanishing gradient problem.
